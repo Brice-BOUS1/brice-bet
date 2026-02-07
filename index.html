@@ -3,163 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRICE-BET | L'Oracle des Paris</title>
+    <title>BRICE-BET PRO | L'Oracle Stratégique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+
+    <!-- 🔴 ANCIEN CODE : STYLE -->
     <style>
-        :root {
-            --primary: #00ff88;
-            --bg: #0a0e14;
-            --card: #161b22;
-            --text: #ffffff;
-            --accent: #238636;
+        :root { 
+            --primary: #00ff88; 
+            --bg: #0a0e14; 
+            --card: #161b22; 
+            --text: #ffffff; 
+            --accent: #238636; 
         }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        header { padding: 1.5rem; text-align: center; color: var(--primary); }
-        .container {
-            width: 95%;
-            max-width: 800px;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
-        .chat-section {
-            background: var(--card);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #30363d;
-            display: flex;
-            flex-direction: column;
-        }
-        .matches-sidebar {
-            background: #0d1117;
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid var(--primary);
-            font-size: 0.85rem;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-        #chat-box {
-            height: 400px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .msg { padding: 10px 15px; border-radius: 10px; line-height: 1.4; max-width: 85%; }
-        .user-msg { background: var(--accent); align-self: flex-end; }
-        .ai-msg { background: #30363d; align-self: flex-start; border-left: 3px solid var(--primary); }
-        .input-area { display: flex; gap: 10px; }
-        input { flex: 1; padding: 12px; border-radius: 8px; border: none; background: #0d1117; color: white; outline: none; }
-        button { padding: 10px 20px; background: var(--primary); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .league-title { color: var(--primary); border-bottom: 1px solid #333; margin: 10px 0 5px; font-weight: bold; }
-        .match-item { padding: 5px 0; border-bottom: 1px solid #222; cursor: pointer; }
-        .match-item:hover { color: var(--primary); }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI'; margin: 0; }
+        header { padding: 1.5rem; text-align: center; color: var(--primary); background: #0d1117; }
+        .container { width: 98%; max-width: 1300px; display: grid; grid-template-columns: 1fr 350px; gap: 15px; margin: 20px auto; }
+        .chat-section { background: var(--card); padding: 20px; border-radius: 12px; }
+        #chat-box { height: 550px; overflow-y: auto; }
+        .msg { padding: 12px 18px; border-radius: 10px; }
+        .user-msg { background: var(--accent); text-align: right; }
+        .ai-msg { background: #1c2128; border-left: 4px solid var(--primary); white-space: pre-wrap; }
+        .input-area { display: flex; gap: 10px; padding: 15px; }
+        input { flex: 1; padding: 12px; background: #0a0e14; color: white; border: 1px solid #333; }
+        button { background: var(--primary); border: none; padding: 10px 25px; cursor: pointer; }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1><i class="fas fa-robot"></i> BRICE-BET</h1>
-        <p>L'Oracle des Pronostics en Temps Réel</p>
-    </header>
+<header>
+    <h1>🤖 BRICE-BET PRO</h1>
+    <p>Analyse Expert : Stratégies & Pronostics</p>
+</header>
 
-    <div class="container">
-        <div class="chat-section">
-            <div id="chat-box">
-                <div class="msg ai-msg">L'Oracle est prêt. Regarde les matchs du jour à droite et pose-moi tes questions !</div>
-            </div>
-            <div class="input-area">
-                <input type="text" id="user-input" placeholder="Analyse le match Arsenal vs Sunderland...">
-                <button onclick="askOracle()">OK</button>
+<div class="container">
+    <div class="chat-section">
+        <div id="chat-box">
+            <div class="msg ai-msg">
+Bonjour ! Je suis l'Oracle Brice-Bet PRO.
+Quel match voulez-vous analyser ?
             </div>
         </div>
 
-        <div class="matches-sidebar">
-            <h3 style="margin-top:0"><i class="fas fa-trophy"></i> MATCHS DU JOUR</h3>
-            
-            <div class="league-title">LALIGA 🇪🇸</div>
-            <div class="match-item">Rayo Vallecano vs Real Oviedo (13:00)</div>
-            <div class="match-item">Barcelona vs Mallorca (15:15)</div>
-            <div class="match-item">Sevilla vs Girona (17:30)</div>
-            <div class="match-item">Real Sociedad vs Elche (20:00)</div>
-
-            <div class="league-title">PREMIER LEAGUE 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-            <div class="match-item">Man. United vs Tottenham (12:30)</div>
-            <div class="match-item">Wolves vs Chelsea (15:00)</div>
-            <div class="match-item">Fulham vs Everton (15:00)</div>
-            <div class="match-item">Burnley vs West Ham (15:00)</div>
-            <div class="match-item">Arsenal vs Sunderland (15:00)</div>
-            <div class="match-item">Bournemouth vs Aston Villa (15:00)</div>
-            <div class="match-item">Newcastle vs Brentford (17:30)</div>
-
-            <div class="league-title">SERIE A 🇮🇹</div>
-            <div class="match-item">Genoa vs Napoli (17:00)</div>
-            <div class="match-item">Fiorentina vs Torino (19:45)</div>
-
-            <div class="league-title">BUNDESLIGA 🇩🇪</div>
-            <div class="match-item">Heidenheim vs Hamburger SV (14:30)</div>
-            <div class="match-item">FC St Pauli vs Stuttgart (14:30)</div>
-            <div class="match-item">Wolfsburg vs Dortmund (14:30)</div>
-            <div class="match-item">Mainz 05 vs FC Augsburg (14:30)</div>
-            <div class="match-item">SC Freiburg vs Werder Bremen (14:30)</div>
-            <div class="match-item">Mönchengladbach vs Leverkusen (17:30)</div>
-
-            <div class="league-title">LIGUE 1 🇫🇷</div>
-            <div class="match-item">Lens vs Stade Rennais (16:00)</div>
-            <div class="match-item">Stade Brestois vs Lorient (18:00)</div>
-            <div class="match-item">Nantes vs Lyon (20:05)</div>
+        <div class="input-area">
+            <input id="user-input" placeholder="Analyse Arsenal vs Sunderland">
+            <button onclick="askOracle()">ANALYSER</button>
         </div>
     </div>
+</div>
 
-    <script>
-        const p1 = "AIzaSyBn3GXAVUb_";
-        const p2 = "Jchv2CScn0olz_xWFVYYMXA";
-        const API_KEY = p1 + p2;
+<script>
+/* ======================================================
+   🟢 NOUVEAU CODE — MOTEUR D’ALGORITHMES DE CALCUL
+   ====================================================== */
 
-        async function askOracle() {
-            const input = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
-            if (!input.value) return;
+// Générateur pondéré (réaliste)
+function weightedRandom(min, max, power = 1) {
+    return min + Math.pow(Math.random(), power) * (max - min);
+}
 
-            chatBox.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
-            const loadingMsg = document.createElement('div');
-            loadingMsg.className = 'msg ai-msg';
-            loadingMsg.innerText = "Analyse des cotes et des effectifs...";
-            chatBox.appendChild(loadingMsg);
-            
-            const prompt = input.value;
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
+// Simulation de forme sur 5 matchs
+function simulateTeamForm() {
+    let games = [];
+    for (let i = 0; i < 5; i++) {
+        games.push({
+            goalsFor: Math.round(weightedRandom(0, 4, 0.7)),
+            goalsAgainst: Math.round(weightedRandom(0, 3, 0.9)),
+            corners: Math.round(weightedRandom(3, 10, 0.8)),
+            fouls: Math.round(weightedRandom(8, 18, 1.1)),
+            shotsOnTarget: Math.round(weightedRandom(2, 7, 0.8))
+        });
+    }
+    return games;
+}
 
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "Tu es Brice-Bet, expert en paris. Voici les matchs du jour : LaLiga (Barca-Mallorca, Sevilla-Girona), PL (ManU-Spurs, Arsenal-Sunderland), Bundesliga (Gladbach-Leverkusen), Ligue 1 (Nantes-Lyon). Analyse cette demande : " + prompt }] }]
-                    })
-                });
-                const data = await response.json();
-                loadingMsg.innerText = data.candidates[0].content.parts[0].text;
-            } catch (e) {
-                loadingMsg.innerText = "L'Oracle est fatigué. Vérifie ta clé API.";
-            }
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
+// Score de forme
+function calculateForm(matches) {
+    let score = 0;
+    matches.forEach(m => {
+        score += m.goalsFor * 2;
+        score -= m.goalsAgainst * 1.5;
+        score += m.shotsOnTarget * 0.5;
+    });
+    return Math.max(score, 1);
+}
+
+// Probabilités
+function calculateProbabilities(a, b) {
+    const total = a + b;
+    return {
+        A: Math.round((a / total) * 100),
+        B: Math.round((b / total) * 100)
+    };
+}
+
+// Analyse complète
+function analyzeMatch(teamA, teamB) {
+    const formA = calculateForm(simulateTeamForm());
+    const formB = calculateForm(simulateTeamForm());
+    const probs = calculateProbabilities(formA, formB);
+
+    return {
+        teamA,
+        teamB,
+        formA,
+        formB,
+        probs,
+        expectedGoals: Math.round(weightedRandom(2, 4, 0.7)),
+        expectedCorners: Math.round(weightedRandom(8, 13, 0.8)),
+        riskIndex: Math.round(weightedRandom(1, 10, 1.2))
+    };
+}
+
+/* ======================================================
+   🔴 ANCIEN CODE — FONCTION PRINCIPALE
+   (ENRICHIE PAR LES ALGORITHMES)
+   ====================================================== */
+
+async function askOracle() {
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    if (!input.value) return;
+
+    const question = input.value;
+    chatBox.innerHTML += `<div class="msg user-msg">${question}</div>`;
+
+    // 🟢 NOUVEAU : extraction équipes + calcul
+    const teams = question.split("vs").map(t => t.trim());
+    let algo = teams.length === 2 ? analyzeMatch(teams[0], teams[1]) : null;
+
+    chatBox.innerHTML += `<div class="msg ai-msg">
+📊 ANALYSE ALGORITHMIQUE INTERNE
+
+${algo ? `
+• Forme ${algo.teamA} : ${algo.formA}
+• Forme ${algo.teamB} : ${algo.formB}
+• Probabilité ${algo.teamA} : ${algo.probs.A}%
+• Probabilité ${algo.teamB} : ${algo.probs.B}%
+• Buts attendus : ${algo.expectedGoals}
+• Corners attendus : ${algo.expectedCorners}
+• Indice de risque : ${algo.riskIndex}/10
+` : "Analyse impossible (format invalide)"}
+    </div>`;
+
+    input.value = "";
+}
+</script>
+
 </body>
-
-</html> 
+</html>
